@@ -1,0 +1,13 @@
+line_length:
+ warning: 100
+ error: 150
+
+disabled_rules:
+ trailing_whitespace
+
+custom_rules:
+    print_using:
+        included: ".*.swift"
+        regex: 'print'
+        message: "Print decrease perfomance, please use po in debugger instead"
+        severity: error
