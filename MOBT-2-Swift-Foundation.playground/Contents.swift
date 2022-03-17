@@ -1,12 +1,6 @@
 import Foundation
 import UIKit
 
-/// These are structures to take an information from backend with using Codable
-// MARK: - Structs
-private struct Currency: Codable {
-    var rates: [String: Double]
-}
-
 /// This class can help us to localize some features regarding currency exchange in case we have more than 1 country in scope
 protocol ConfiguratorApplangaSpecific {
     func localizedString(_ string: String, comment: String?) -> String
@@ -33,7 +27,6 @@ class ConfiguratorApplanga: ConfiguratorApplangaSpecific {
     }
 }
 
-
 class Configurator {
     static var currentTarget: Target = {
         guard let targetName = Bundle.main.infoDictionary?["TargetName"] as? String,
@@ -43,120 +36,218 @@ class Configurator {
         return target
     }()
 }
+
 /// This peace of code we use to separate some kind of countries for different targets
 enum Target: String {
-    case Italy = "Italy"
-    case Greece = "Greece"
-    case Romania = "Romania"
-    case Netherlands = "Netherlands"
+    case italy = "Italy"
+    case greece = "Greece"
+    case romania = "Romania"
+    case netherlands = "Netherlands"
     
     var configurationPath: String {
         switch self {
-        case .Italy:
+        case .italy:
             return "ConfigurationItaly"
-        case .Greece:
+        case .greece:
             return "ConfigurationGreece"
-        case .Romania:
+        case .romania:
             return "ConfigurationRomania"
-        case .Netherlands:
+        case .netherlands:
             return "ConfigurationNetherlands"
         }
     }
     
     var localizedTableName: String {
         switch self {
-        case .Italy:
+        case .italy:
             return "LocalizedItaly"
-        case .Greece:
+        case .greece:
             return "LocalizedGreece"
-        case .Romania:
+        case .romania:
             return "LocalizedRomania"
-        case .Netherlands:
+        case .netherlands:
             return "ConfigurationNetherlands"
         }
     }
 }
-
-/// This is the example of getting backend part of code. And transfer this data to swift objects.
-// MARK: - Typealias
-public typealias EmptyClosure = () -> Void
-public typealias DataKeys = (([String]) -> Void)
-public typealias DataValues = (([Double]) -> Void)
-
-public struct Keys {
-    static let mostRecentExchangeRatesValues = "Keys.mostRecentExchangeRatesValue"
-    static let mostRecentExchangeRatesKeys = "Keys.mostRecentExchangeRatesKeys"
+    
+protocol CurrencyExchangeUserDefaultsProtocol {
+    var storeCurrencyExchangeKey: [String] { get  set }
+    var storeCurrencyExchangeValue: Any { get set }
 }
 
-// MARK: - Protocols
-protocol CurrencyExchangeMethods {
-    func fetchJSON(retreiveDataKeys: @escaping DataKeys, retrieveDataValues: @escaping DataValues)
-}
+final class CurrencyExchangeUserDefaults: CurrencyExchangeUserDefaultsProtocol {
+    private let currencyExchangeKey = "currencyExchangeKey"
+    private let currencyExchagneValue = "currencyExchangeValue"
 
-// MARK: - Classes
-final class CurrencyExchangeConverterService: CurrencyExchangeMethods {
-    // MARK: - Enums
-    private enum Const {
-        static let urlAPI: String = "https://open.er-api.com/v6/latest/USD"
+    private let userDefaults: UserDefaults
+    
+    var storeCurrencyExchangeKey: [String] {
+        get {
+            return userDefaults.stringArray(forKey: currencyExchangeKey) ?? []
+        }
+        set {
+            userDefaults.set(newValue, forKey: currencyExchangeKey)
+        }
     }
     
-    // MARK: - Properties
-    var currencyCode: [String] = []
-    var values: [Double] = []
+    var storeCurrencyExchangeValue: Any {
+        get {
+            return userDefaults.object(forKey: currencyExchagneValue) ?? []
+        }
+        set {
+            userDefaults.set(newValue, forKey: currencyExchagneValue)
+        }
+    }
+
+    init(userDefaults: UserDefaults = .standard) {
+        self.userDefaults = userDefaults
+    }
+}
+
+protocol Endpoint {
+    var scheme: String { get }
+    var baseURL: String { get }
+    var path: String { get }
+    var parametres: [URLQueryItem] { get }
+    var method: String { get }
+}
+
+enum CurrencyExchangeEndpoint: Endpoint {
+    case getSearchResults(searchText: String?, page: Int?)
     
-    // MARK: - Methods
-    func fetchJSON(retreiveDataKeys: @escaping DataKeys, retrieveDataValues: @escaping DataValues) {
-        guard let url = URL(string: Const.urlAPI) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil { return }
-            guard let data = data else { return }
-            do {
-                let results = try JSONDecoder().decode(Currency.self, from: data)
-                self.currencyCode.append(contentsOf: results.rates.keys)
-                self.values.append(contentsOf: results.rates.values)
-                retreiveDataKeys(self.currencyCode)
-                retrieveDataValues(self.values)
-            } catch {
-                print(error)
+    var scheme: String {
+        switch self {
+        default:
+            return "http"
+        }
+    }
+    
+    var baseURL: String {
+        switch self {
+        default:
+            return "open.er-api.com"
+        }
+    }
+    
+    var path: String {
+        switch self {
+        default:
+            return "/v6/latest/USD"
+        }
+    }
+    
+    var parametres: [URLQueryItem] {
+        switch self {
+        case .getSearchResults(searchText: let searchText, page: let page):
+            return [URLQueryItem(name: "text", value: searchText),
+                    URLQueryItem(name: "page", value: String(page ?? 0)),
+            URLQueryItem(name: "format", value: "json")]
+        }
+    }
+    
+    var method: String {
+        switch self {
+        case . getSearchResults:
+            return "GET"
+        }
+    }
+}
+
+struct CurrencyExchangeResponse: Codable {
+    let rates: [String: Double]?
+}
+
+class NetworkService {
+    var currency: [String: Double] = [:]
+    private let session: URLSession
+    
+    init(session: URLSession) {
+        self.session = session
+    }
+    
+    func request<T: Codable>(endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> ()) {
+        var components = URLComponents()
+        components.scheme = endpoint.scheme
+        components.host = endpoint.baseURL
+        components.path = endpoint.path
+        components.queryItems = endpoint.parametres
+        
+        
+        guard let url = components.url else { return }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = endpoint.method
+        
+        let dataTask = session.dataTask(with: urlRequest) { data, response, error in
+            guard error == nil else {
+                completion(.failure(error!))
+                print(error?.localizedDescription ?? "Unknown error")
+                return
             }
-        }.resume()
+            
+            guard response != nil, let data = data else { return }
+            
+            DispatchQueue.main.async {
+                if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
+                    completion(.success(responseObject))
+                } else {
+                    let error = NSError(domain: "", code: 200, userInfo: [NSLocalizedDescriptionKey: "Failed to decode response"])
+                    completion(.failure(error))
+                }
+            }
+        }
+        dataTask.resume()
     }
 }
 
 final class CurrencyExchangeLocalData {
-    var currencyExchangeService: CurrencyExchangeConverterService?
+    private let network: NetworkService
+    private let currencyExchangeUserDefaults = CurrencyExchangeUserDefaults()
     
-    init(currencyExchangeService: CurrencyExchangeConverterService?) {
-        self.currencyExchangeService = currencyExchangeService
+    init(network: NetworkService) {
+        self.network = network
     }
     
-    func setDataToUserDefaults() {
-        currencyExchangeService?.fetchJSON(retreiveDataKeys: { keys in
-            UserDefaults.standard.set(keys, forKey: Keys.mostRecentExchangeRatesKeys)
-        }, retrieveDataValues: { values in
-            UserDefaults.standard.set(values, forKey: Keys.mostRecentExchangeRatesValues)
-        })
+    func persistNetworkData() {
+        network.request(endpoint: CurrencyExchangeEndpoint.getSearchResults(searchText: "", page: 0)) { (result: Result<CurrencyExchangeResponse, Error>) in
+            switch result {
+            case .success(let success):
+                self.network.currency = success.rates ?? [:]
+                self.currencyExchangeUserDefaults.storeCurrencyExchangeKey = Array(self.network.currency.keys)
+                print(self.currencyExchangeUserDefaults.storeCurrencyExchangeKey)
+                self.currencyExchangeUserDefaults.storeCurrencyExchangeValue = Array(self.network.currency.values)
+                print(self.currencyExchangeUserDefaults.storeCurrencyExchangeValue)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
     
-    func retrieveDataFromUserDefaults() {
-        let currencyKeys = UserDefaults.standard.stringArray(forKey: Keys.mostRecentExchangeRatesKeys)
-        let currencyValues = UserDefaults.standard.object(forKey: Keys.mostRecentExchangeRatesValues)
-        print(currencyKeys ?? "No such keys in User Defaults")
-        print(currencyValues ?? "No such values in User Defaults")
+    func retrieveNetworkData() {
+        currencyExchangeUserDefaults.storeCurrencyExchangeKey
+        currencyExchangeUserDefaults.storeCurrencyExchangeValue
     }
 }
 
-let currencyExchangeService = CurrencyExchangeConverterService()
-let currencyExchangeLocalData = CurrencyExchangeLocalData(currencyExchangeService: currencyExchangeService)
-currencyExchangeLocalData.setDataToUserDefaults()
-currencyExchangeLocalData.retrieveDataFromUserDefaults()
+let urlSession = URLSession(configuration: .default)
+let networkService = NetworkService(session: urlSession)
+let currencyExchangeLocalData = CurrencyExchangeLocalData(network: networkService)
+currencyExchangeLocalData.persistNetworkData()
+currencyExchangeLocalData.retrieveNetworkData()
 
 ///When we have an object from the backend, we have a possibility to create MVVM-C architecture and use data to display on UI part
 ///This is example of MVVM-C structure of our project
 
 ///Base coordinator conforms to different coordinators to use methods of our currency exchanges
-class BaseCoordinator {
-    private(set) weak var rootController: UINavigationController?
+
+protocol BaseCoordinatorProtocol {
+    func pushViewController(_ viewController: UIViewController)
+    func start()
+}
+
+class BaseCoordinator: BaseCoordinatorProtocol {
+    private(set) var rootController: UINavigationController
     
     init(rootController: UINavigationController) {
         self.rootController = rootController
@@ -175,7 +266,7 @@ class CurrencyExchangeCoordinator: BaseCoordinator {
         assertionFailure("Unreachable code")
     }
     
-    func start(currencyServiceLayer: CurrencyExchangeConverterService) {
+    func start(currencyServiceLayer: NetworkService) {
         let model = CurrencyExchangeModel(serviceLayer: currencyServiceLayer)
         let viewModel = CurrencyExchangeViewModel(model: model)
         let viewController = CurrencyExchangeViewController(viewModel: viewModel)
@@ -216,9 +307,8 @@ struct CurrencyExchangeStyle: CurrencyExchangeStyling {
 
 //Example
 class CurrencyExchangeViewController: UIViewController, ControlSetup {
-    
-    var viewModel: CurrencyExchangeViewModel
-    var style = CurrencyExchangeStyle()
+    private let viewModel: CurrencyExchangeViewModel
+    private let style = CurrencyExchangeStyle()
     
     init(viewModel: CurrencyExchangeViewModel) {
         self.viewModel = viewModel
@@ -294,11 +384,11 @@ class BaseViewModel: BaseViewModelProtocol {
 }
 
 private enum HTTPStatusCodes: Int {
-    case OK = 200
-    case Created //201
-    case Accepted //202
-    case NonAuthoritativeInformation //203
-    case BadRequest = 400
+    case ok = 200
+    case created //201
+    case accepted //202
+    case nonAuthoritativeInformation //203
+    case badRequest = 400
 }
 
 /// View model can help us to create a bussiness logic of our app.
@@ -308,7 +398,7 @@ class CurrencyExchangeViewModel: BaseViewModel {
         static let currencyNameNotUniqueReasonCode = "currencyNameNotUnique"
         static let currencyNameInvalidReason = "invalid"
     }
-    var model: CurrencyExchangeModel
+    private let model: CurrencyExchangeModel
     
     init(model: CurrencyExchangeModel) {
         self.model = model
@@ -320,12 +410,10 @@ class CurrencyExchangeViewModel: BaseViewModel {
     // In this area you can use your logic.
 }
 
-
-
 ///Model needs to store our data from backend.
 class CurrencyExchangeModel {
-    var serviceLayer: CurrencyExchangeConverterService?
-    init(serviceLayer: CurrencyExchangeConverterService) {
+    private let serviceLayer: NetworkService
+    init(serviceLayer: NetworkService) {
         self.serviceLayer = serviceLayer
     }
     //We need to take our objects from the service layer
