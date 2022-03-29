@@ -7,8 +7,8 @@
 
 import UIKit
 
-final class signOutCoordinator: Coordinator {
-    var childCoordinators: [Coordinator] = []
+final class SignOutCoordinator: Coordinator {
+    private(set) var childCoordinators: [Coordinator] = []
     
     private let navigationController: UINavigationController
     var parentCoordinator: Coordinator?

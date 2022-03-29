@@ -13,7 +13,6 @@ protocol SignUpViewModelProtocol {
     var confirmationPassword: String? { get }
     var coordinator: SignUpCoordinator? { get }
     func registrationUserWith(_ userName: String, andPassword password: String, confirmationPassword: String)
-    typealias authenticationLoginCallBack = (_ status: Bool) -> Void
     func registerCompletion(callBack: @escaping (Bool) -> Void)
     func tappedLoginScreen()
     func viewDidDisapear()
@@ -26,15 +25,12 @@ class SignUpViewModel: SignUpViewModelProtocol {
     weak var coordinator: SignUpCoordinator?
     
     var userName: String {
-        get {
-            guard let userName = model?.userName else { return "" }
-            return userName }
+        get { return model?.userName ?? ""}
         set(newValue) { model?.userName = newValue }
     }
     
     var password: String {
-        get { guard let password = model?.password else { return "" }
-            return password }
+        get { return model?.password ?? ""}
         set(newValue) { model?.password = newValue }
     }
     

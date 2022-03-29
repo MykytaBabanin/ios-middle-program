@@ -9,16 +9,15 @@ import UIKit
 
 
 class LoginViewController: UIViewController {
-
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var userNameTextField: UITextField!
     
-    var viewModel: LoginViewModelProtocol?
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var userNameTextField: UITextField!
+    
+    var viewModel: LoginViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Login Page"
-        navigationItem.hidesBackButton = true
+        setupUI()
         bind()
     }
     
@@ -27,10 +26,16 @@ class LoginViewController: UIViewController {
         viewModel?.viewDidDisapear()
     }
     
+    func setupUI() {
+        guard let viewModel = viewModel else { return }
+        title = viewModel.navigationTitle
+        navigationItem.hidesBackButton = viewModel.isBackButtonInvisible
+    }
+    
     func bind() {
-        viewModel?.loginCompletion { [weak self] (status) in
+        viewModel?.loginCompletion { [weak self] (success) in
             guard let self = self else { return }
-            if status {
+            if success {
                 self.viewModel?.displaySignOut()
             } else {
                 self.presentMessage("Wrong credentials")
@@ -38,13 +43,13 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func loginAction(_ sender: Any) {
+    @IBAction func loginAction() {
         guard let userName = self.userNameTextField.text else { return }
         guard let password = self.passwordTextField.text else { return }
-        viewModel?.authenticationUserWith(userName: userName, andPassword: password)
+        viewModel?.authenticateUser(with: userName, password)
     }
-   
-    @IBAction func signUpAction(_ sender: Any) {
+    
+    @IBAction func signUpAction() {
         viewModel?.displaySignUpPage()
     }
 }
