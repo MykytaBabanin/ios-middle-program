@@ -18,7 +18,7 @@ class LoginModel: LoginModelProtocol {
         case password
     }
     
-    let defaults: UserDefaults
+    private let defaults: UserDefaults
     
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults

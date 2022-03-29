@@ -9,12 +9,10 @@ import Foundation
 
 
 protocol LoginViewModelProtocol {
-    typealias authenticationLoginCallBack = (_ status: Bool) -> Void
-    var modelUserName: String { get }
-    var modelPassword: String { get }
-    func authenticationUserWith(userName: String, andPassword password: String)
-    func verifyUserWith(_ userName: String, andPassword password: String)
-    func loginCompletion(callBack: @escaping authenticationLoginCallBack)
+    var userName: String { get }
+    var password: String { get }
+    func authenticateUser(with userName: String, _ password: String)
+    func verifyUser(with userName: String, _ password: String)
     func displaySignUpPage()
     func displaySignOut()
     func viewDidDisapear()
@@ -22,19 +20,23 @@ protocol LoginViewModelProtocol {
 
 class LoginViewModel: LoginViewModelProtocol {
     weak var coordinator: LoginCoordinator?
-    let defaults: UserDefaults
+    private let defaults: UserDefaults
     let model: LoginModel
     
-    var modelUserName: String {
-        get {
-            guard let userName = model.userName else { return "" }
-            return userName }
+    var navigationTitle: String {
+        return "Login Page"
     }
     
-    var modelPassword: String {
-        get {
-            guard let password = model.password else { return "" }
-            return password }
+    var isBackButtonInvisible: Bool {
+        return true
+    }
+    
+    var userName: String {
+        return model.userName ?? ""
+    }
+    
+    var password: String {
+        return model.password ?? ""
     }
     
     typealias authenticationLoginCallBack = (_ status: Bool) -> Void
@@ -45,10 +47,10 @@ class LoginViewModel: LoginViewModelProtocol {
         self.model = model
     }
     
-    func authenticationUserWith(userName: String, andPassword password: String) {
-        if userName.count != 0 {
-            if password.count != 0 {
-                self.verifyUserWith(userName, andPassword: password)
+    func authenticateUser(with userName: String, _ password: String) {
+        if !userName.isEmpty {
+            if !password.isEmpty {
+                self.verifyUser(with: userName, password)
             } else {
                 self.loginCallback?(false)
             }
@@ -57,13 +59,11 @@ class LoginViewModel: LoginViewModelProtocol {
         }
     }
     
-    func verifyUserWith(_ userName: String, andPassword password: String) {
-        if userName == modelUserName && password == modelPassword {
+    func verifyUser(with userName: String, _ password: String) {
+        if userName == userName && password == password {
             saveLoggedState()
             self.loginCallback?(true)
         } else {
-            print(modelUserName)
-            print(modelPassword)
             self.loginCallback?(false)
         }
     }

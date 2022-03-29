@@ -30,7 +30,7 @@ final class AppCoordinator: Coordinator {
         let navigationController = UINavigationController()
         
         if is_authenticated {
-            let signOutCoordinator = signOutCoordinator(navigationController: navigationController)
+            let signOutCoordinator = SignOutCoordinator(navigationController: navigationController)
             signOutCoordinator.parentCoordinator = self
             childCoordinators.append(signOutCoordinator)
             signOutCoordinator.start()

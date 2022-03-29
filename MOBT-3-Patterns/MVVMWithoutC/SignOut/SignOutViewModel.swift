@@ -16,7 +16,11 @@ protocol ViewModelProtocol {
 
 class SignOutViewModel: ViewModelProtocol {
     
-    weak var coordinator: signOutCoordinator?
+    weak var coordinator: SignOutCoordinator?
+    
+    var titleText: String {
+        return "Sign Out Page"
+    }
     
     func saveLoggedState() {
         let def = UserDefaults.standard

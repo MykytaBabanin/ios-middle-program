@@ -9,11 +9,11 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
-    @IBOutlet weak var signUpUsernameTextField: UITextField!
-    @IBOutlet weak var signUpPasswordTextField: UITextField!
-    @IBOutlet weak var signUpConfirmationTextField: UITextField!
+    @IBOutlet private weak var signUpUsernameTextField: UITextField!
+    @IBOutlet private weak var signUpPasswordTextField: UITextField!
+    @IBOutlet private weak var signUpConfirmationTextField: UITextField!
     
-    let viewModel: SignUpViewModelProtocol?
+    var viewModel: SignUpViewModelProtocol? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +28,8 @@ class SignUpViewController: UIViewController {
     }
     
     func bind() {
-        viewModel?.registerCompletion { [weak self] (status) in
-            if status {
+        viewModel?.registerCompletion { [weak self] (success) in
+            if success {
                 self?.displayLoginPage()
             } else {
                 self?.presentMessage("Password do not match")
@@ -41,11 +41,11 @@ class SignUpViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(displayLoginPage))
     }
     
-    @IBAction func signUpAction(_ sender: Any) {
+    @IBAction func signUpAction() {
         guard let userName = self.signUpUsernameTextField.text else { return }
         guard let password = self.signUpPasswordTextField.text else { return }
         guard let confirmationPassword = self.signUpConfirmationTextField.text else { return }
-        
+
         viewModel?.registrationUserWith(userName, andPassword: password, confirmationPassword: confirmationPassword)
     }
     

@@ -55,7 +55,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="DLV-rP-R5i"/>
+                                <action selector="loginAction" destination="-1" eventType="touchUpInside" id="WmV-Be-gqh"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QES-yk-HHn">
@@ -73,7 +73,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="signUpAction:" destination="-1" eventType="touchUpInside" id="S0x-Gf-i4c"/>
+                                <action selector="signUpAction" destination="-1" eventType="touchUpInside" id="wme-M1-5QB"/>
                             </connections>
                         </button>
                     </subviews>

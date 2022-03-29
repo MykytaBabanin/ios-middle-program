@@ -8,7 +8,7 @@
 import UIKit
 
 final class LoginCoordinator: Coordinator {
-    var childCoordinators: [Coordinator] = []
+    private(set) var childCoordinators: [Coordinator] = []
     
     private let navigationController: UINavigationController
     var parentCoordinator: Coordinator?
@@ -34,7 +34,7 @@ final class LoginCoordinator: Coordinator {
     }
     
     func startSignOut() {
-        let signOutCoordinator = signOutCoordinator(navigationController: navigationController)
+        let signOutCoordinator = SignOutCoordinator(navigationController: navigationController)
         signOutCoordinator.parentCoordinator = self
         childCoordinators.append(signOutCoordinator)
         signOutCoordinator.start()
