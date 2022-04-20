@@ -1,0 +1,432 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E936835B28059A180080FDCA /* FriendsControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936835A28059A180080FDCA /* FriendsControllerHelper.swift */; };
+		E95348192802B1BE00D8501D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95348182802B1BE00D8501D /* AppDelegate.swift */; };
+		E953481B2802B1BE00D8501D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E953481A2802B1BE00D8501D /* SceneDelegate.swift */; };
+		E95348232802B1BE00D8501D /* MOBT_5_Dialog_Messenger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E95348212802B1BE00D8501D /* MOBT_5_Dialog_Messenger.xcdatamodeld */; };
+		E95348252802B1C100D8501D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E95348242802B1C100D8501D /* Assets.xcassets */; };
+		E95348282802B1C100D8501D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95348262802B1C100D8501D /* LaunchScreen.storyboard */; };
+		E9937FA02805A51E0088C7BC /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E953481C2802B1BE00D8501D /* FriendsViewController.swift */; };
+		E9937FA52805A5CC0088C7BC /* Message+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9937FA12805A5CC0088C7BC /* Message+CoreDataClass.swift */; };
+		E9937FA62805A5CC0088C7BC /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9937FA22805A5CC0088C7BC /* Message+CoreDataProperties.swift */; };
+		E9937FA72805A5CC0088C7BC /* Friend+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9937FA32805A5CC0088C7BC /* Friend+CoreDataClass.swift */; };
+		E9937FA82805A5CC0088C7BC /* Friend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9937FA42805A5CC0088C7BC /* Friend+CoreDataProperties.swift */; };
+		E9937FAA2805C0B30088C7BC /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9937FA92805C0B30088C7BC /* ChatLogController.swift */; };
+		E9AC4031280833690056CD8C /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC4030280833690056CD8C /* CustomTabBarController.swift */; };
+		E9B88CF628102E3A00CE4144 /* ChatLogMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88CF528102E3A00CE4144 /* ChatLogMessageCell.swift */; };
+		E9B88CF828102E6A00CE4144 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88CF728102E6A00CE4144 /* MessageCell.swift */; };
+		E9B88CFA2810388C00CE4144 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88CF92810388C00CE4144 /* BaseCell.swift */; };
+		E9B88CFC2810416F00CE4144 /* UIView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88CFB2810416F00CE4144 /* UIView+Helper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E936835A28059A180080FDCA /* FriendsControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsControllerHelper.swift; sourceTree = "<group>"; };
+		E95348152802B1BE00D8501D /* MOBT-5-Dialog-Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MOBT-5-Dialog-Messenger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E95348182802B1BE00D8501D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E953481A2802B1BE00D8501D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E953481C2802B1BE00D8501D /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		E95348222802B1BE00D8501D /* MOBT_5_Dialog_Messenger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MOBT_5_Dialog_Messenger.xcdatamodel; sourceTree = "<group>"; };
+		E95348242802B1C100D8501D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E95348272802B1C100D8501D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E95348292802B1C100D8501D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9937FA12805A5CC0088C7BC /* Message+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E9937FA22805A5CC0088C7BC /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9937FA32805A5CC0088C7BC /* Friend+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E9937FA42805A5CC0088C7BC /* Friend+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9937FA92805C0B30088C7BC /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		E9AC4030280833690056CD8C /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		E9B88CF528102E3A00CE4144 /* ChatLogMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogMessageCell.swift; sourceTree = "<group>"; };
+		E9B88CF728102E6A00CE4144 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		E9B88CF92810388C00CE4144 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		E9B88CFB2810416F00CE4144 /* UIView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helper.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E95348122802B1BE00D8501D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E93683642805A22E0080FDCA /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				E9937FA12805A5CC0088C7BC /* Message+CoreDataClass.swift */,
+				E9937FA22805A5CC0088C7BC /* Message+CoreDataProperties.swift */,
+				E9937FA32805A5CC0088C7BC /* Friend+CoreDataClass.swift */,
+				E9937FA42805A5CC0088C7BC /* Friend+CoreDataProperties.swift */,
+			);
+			path = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		E953480C2802B1BE00D8501D = {
+			isa = PBXGroup;
+			children = (
+				E95348172802B1BE00D8501D /* MOBT-5-Dialog-Messenger */,
+				E95348162802B1BE00D8501D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E95348162802B1BE00D8501D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E95348152802B1BE00D8501D /* MOBT-5-Dialog-Messenger.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E95348172802B1BE00D8501D /* MOBT-5-Dialog-Messenger */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88CF428102E2600CE4144 /* Chat */,
+				E9B88CF328102E1300CE4144 /* Friends */,
+				E93683642805A22E0080FDCA /* CoreDataModel */,
+				E95348182802B1BE00D8501D /* AppDelegate.swift */,
+				E953481A2802B1BE00D8501D /* SceneDelegate.swift */,
+				E9AC4030280833690056CD8C /* CustomTabBarController.swift */,
+				E9B88CFB2810416F00CE4144 /* UIView+Helper.swift */,
+				E95348242802B1C100D8501D /* Assets.xcassets */,
+				E95348262802B1C100D8501D /* LaunchScreen.storyboard */,
+				E95348292802B1C100D8501D /* Info.plist */,
+				E95348212802B1BE00D8501D /* MOBT_5_Dialog_Messenger.xcdatamodeld */,
+			);
+			path = "MOBT-5-Dialog-Messenger";
+			sourceTree = "<group>";
+		};
+		E9B88CF328102E1300CE4144 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				E936835A28059A180080FDCA /* FriendsControllerHelper.swift */,
+				E953481C2802B1BE00D8501D /* FriendsViewController.swift */,
+				E9B88CF728102E6A00CE4144 /* MessageCell.swift */,
+				E9B88CF92810388C00CE4144 /* BaseCell.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		E9B88CF428102E2600CE4144 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				E9937FA92805C0B30088C7BC /* ChatLogController.swift */,
+				E9B88CF528102E3A00CE4144 /* ChatLogMessageCell.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E95348142802B1BE00D8501D /* MOBT-5-Dialog-Messenger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E953482C2802B1C100D8501D /* Build configuration list for PBXNativeTarget "MOBT-5-Dialog-Messenger" */;
+			buildPhases = (
+				E95348112802B1BE00D8501D /* Sources */,
+				E95348122802B1BE00D8501D /* Frameworks */,
+				E95348132802B1BE00D8501D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MOBT-5-Dialog-Messenger";
+			productName = "MOBT-5-Dialog-Messenger";
+			productReference = E95348152802B1BE00D8501D /* MOBT-5-Dialog-Messenger.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E953480D2802B1BE00D8501D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					E95348142802B1BE00D8501D = {
+						CreatedOnToolsVersion = 13.3;
+					};
+				};
+			};
+			buildConfigurationList = E95348102802B1BE00D8501D /* Build configuration list for PBXProject "MOBT-5-Dialog-Messenger" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E953480C2802B1BE00D8501D;
+			productRefGroup = E95348162802B1BE00D8501D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E95348142802B1BE00D8501D /* MOBT-5-Dialog-Messenger */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E95348132802B1BE00D8501D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E95348282802B1C100D8501D /* LaunchScreen.storyboard in Resources */,
+				E95348252802B1C100D8501D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E95348112802B1BE00D8501D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9937FAA2805C0B30088C7BC /* ChatLogController.swift in Sources */,
+				E95348232802B1BE00D8501D /* MOBT_5_Dialog_Messenger.xcdatamodeld in Sources */,
+				E9937FA72805A5CC0088C7BC /* Friend+CoreDataClass.swift in Sources */,
+				E9937FA82805A5CC0088C7BC /* Friend+CoreDataProperties.swift in Sources */,
+				E9B88CFC2810416F00CE4144 /* UIView+Helper.swift in Sources */,
+				E9B88CFA2810388C00CE4144 /* BaseCell.swift in Sources */,
+				E9B88CF828102E6A00CE4144 /* MessageCell.swift in Sources */,
+				E95348192802B1BE00D8501D /* AppDelegate.swift in Sources */,
+				E9AC4031280833690056CD8C /* CustomTabBarController.swift in Sources */,
+				E9937FA02805A51E0088C7BC /* FriendsViewController.swift in Sources */,
+				E9937FA52805A5CC0088C7BC /* Message+CoreDataClass.swift in Sources */,
+				E9937FA62805A5CC0088C7BC /* Message+CoreDataProperties.swift in Sources */,
+				E953481B2802B1BE00D8501D /* SceneDelegate.swift in Sources */,
+				E9B88CF628102E3A00CE4144 /* ChatLogMessageCell.swift in Sources */,
+				E936835B28059A180080FDCA /* FriendsControllerHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E95348262802B1C100D8501D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E95348272802B1C100D8501D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E953482A2802B1C100D8501D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E953482B2802B1C100D8501D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E953482D2802B1C100D8501D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MOBT-5-Dialog-Messenger/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.babanin.MOBT-5-Dialog-Messenger";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E953482E2802B1C100D8501D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MOBT-5-Dialog-Messenger/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.babanin.MOBT-5-Dialog-Messenger";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E95348102802B1BE00D8501D /* Build configuration list for PBXProject "MOBT-5-Dialog-Messenger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E953482A2802B1C100D8501D /* Debug */,
+				E953482B2802B1C100D8501D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E953482C2802B1C100D8501D /* Build configuration list for PBXNativeTarget "MOBT-5-Dialog-Messenger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E953482D2802B1C100D8501D /* Debug */,
+				E953482E2802B1C100D8501D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E95348212802B1BE00D8501D /* MOBT_5_Dialog_Messenger.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E95348222802B1BE00D8501D /* MOBT_5_Dialog_Messenger.xcdatamodel */,
+			);
+			currentVersion = E95348222802B1BE00D8501D /* MOBT_5_Dialog_Messenger.xcdatamodel */;
+			path = MOBT_5_Dialog_Messenger.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E953480D2802B1BE00D8501D /* Project object */;
+}
